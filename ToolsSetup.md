@@ -46,3 +46,12 @@
 
 # WireShark
 - Came preinstalled on Kali Linux
+
+# Exiftool
+- Analyze file meta data
+
+# Oletools
+- Analyze malicious documents
+- There are many ways to install Python programs
+  - `sudo apt install pipx`
+  - `pipx install oletools`
