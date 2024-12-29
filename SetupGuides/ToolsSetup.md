@@ -24,7 +24,7 @@
   - Click yes when it asks to analyze the file -> keep defaults -> analyze
 - Icon Creation
   - Open a root terminal
-    - `cd ~/.local/share/applications`
+    - `cd /usr/share/applications`
     - `nano ghidra.desktop`
     - Add this to the file 
         -   ```
@@ -37,12 +37,40 @@
 			Type=Application
 			Categories=Development;Security;
             ```
-    - Make `chmod +x ~/.local/share/applications/ghidra.desktop`
+      - To save: Ctrl + O -> enter -> Ctrl + X
+    - Make it executable `chmod +x /usr/share/applications/ghidra.desktop`
   - Panel Bar
     - Right click -> add new item -> Launcher
     - Right click Launcher -> Properties -> add -> Ghidra
 
 # Burp Suite
+- Kali Linux Panel -> Applications icon -> 03 - Web Application Analysis -> Burpsuite -> Start
+- Burpsuite 
+	- Proxy -> Proxy Settings -> Import/Export CA certificate -> Certificate in DER format -> Next -> Select file -> Add a file name -> Remember the path where it saved
+	- Proxy -> Intercept -> click 'Intercept is off' to toggle it on
+- Firefox
+	- Hamburger Menu -> Settings -> Scroll to bottom Network Settings -> Settings
+		- Manual Proxy Configuration
+		- HTTP Proxy: 127.0.0.1  Port: 8080
+		- Check the option to 'Also use this proxy for HTTPS'
+		- OK
+	- Hamburger Menu -> Settings -> Search for Certificates -> View Certificates -> Import
+		- Find the cert you saved earlier
+		- Select the option to Trust this CA to identify websites
+- Kali Panel
+  - Right click inside the Kali Panel -> Panel -> Add new items -> Launcher -> Add
+  - This will add the white gear to the top right
+  	- Right click the white gear icon -> properties -> Plus Sign to add new item
+  	- Search for Burp -> Add burpsuite
 
 # WireShark
 - Came preinstalled on Kali Linux
+-  Kali Panel
+   -  Right click inside the Kali Panel -> Panel -> Add new items -> Launcher -> Add
+   -  This will add the white gear to the top right
+      -  Right click the white gear icon -> properties -> Plus Sign to add new item
+      -  Search for wire -> Add wireshark
+
+# Command Line Tools
+- Oletools
+  - `sudo -H pip install -U oletools[full]`

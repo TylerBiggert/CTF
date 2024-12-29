@@ -1,13 +1,14 @@
 # Ghidra
 https://ghidra-sre.org/
 - Reverse engineering tool to analyze binary files.
-- Learn a programs structure, behavior, functionality, values, without the original source code.
+- Learn a program's structure, behavior, functionality, values, without the original source code.
 
 ## Most Used
 - L to rename the highlighted function/variable
 - Window -> defined strings
 - Window -> decompiler
 - Window -> functions
+
 ## Abbreviations
 - FUN_memoryAddressHere
   - Custom/user created function
