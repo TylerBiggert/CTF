@@ -101,6 +101,7 @@ Needed as a text editor, review source, run scripts.
   - GitHub Pull Requests
   - Python
   - Markdown All In One
+  - C/C++ Extension Pack
 - Account Login
   - Click the Accounts icon in the bottom left
   - Sign in with GitHub
