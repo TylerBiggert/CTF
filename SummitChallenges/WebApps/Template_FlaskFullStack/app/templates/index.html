@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web App</title>
+</head>
+<body>
+    <h1>Items List</h1>
+    <ul id="items"></ul>
+
+    <script>
+        fetch("/api/items")
+            .then(response => response.json())
+            .then(data => {
+                const userList = document.getElementById("items");
+                data.forEach(user => {
+                    const li = document.createElement("li");
+                    li.textContent = user.name;
+                    userList.appendChild(li);
+                });
+            })
+            .catch(error => console.error("Error fetching items:", error));
+    </script>
+</body>
+</html>

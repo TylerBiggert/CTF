@@ -123,3 +123,18 @@
   - sudo apt-get install -f
   - rm powershell_7.4.7-1.deb_amd64.deb
   - pwsh
+
+## Docker (Kali Linux)
+https://docs.docker.com/engine/install/debian/
+- `sudo apt update`
+- `sudo apt upgrade -y`
+- `sudo apt install -y docker.io`
+- `sudo systemctl enable docker --now`
+- `sudo usermod -aG docker youUserNameHere`
+- Log out and log back in
+- `echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list`
+- `curl -fsSL https://download.docker.com/linux/debian/gpg |
+  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`
+- `sudo apt update`
+- `sudo apt install -y docker-ce docker-ce-cli containerd.io`
