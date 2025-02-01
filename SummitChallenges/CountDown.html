@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <div class="container mx-auto p-6 text-center">
+        <h1 class="text-4xl font-bold mb-6">Check if you are a winner!</h1>
+        <p class="text-lg mb-6">Number of attempts left: <span id="counter">985</span></p>
+        <p class="text-lg mb-6">Message: <span id="message"></span></p>
+
+        <button id="clickButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">-</button>
+        <p id="winnerMessage" class="text-2xl font-bold mt-4 hidden">The flag is somewhere else!</p>
+    </div>
+
+    <script>
+        let count = 985;
+        const counterDisplay = document.getElementById('counter');
+        const winnerMessage = document.getElementById('winnerMessage');
+        const button = document.getElementById('clickButton');
+
+        button.addEventListener('click', () => {
+            count--;
+            counter.innerText = count;
+            message.innerText = sessionStorage.getItem(`messages${count}`);
+            if (count <= 0) {
+                winnerMessage.classList.remove('hidden');
+                button.disabled = true;
+                button.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        });
+    </script>
+
+    <script>
+        const failureMessage = [62, 86, 101, 82, 52, 69, 55, 108, 100, 86, 100, 100, 90, 96, 95, 80, 100, 101, 96, 99, 82, 88, 86, 80, 99, 96, 84, 92, 100, 110];
+
+        for (let i = 1000; i > 0; i--) {
+            const nextFailureMessageInt = failureMessage.map(num => num + i);
+            const nextFaliureMessageString = String.fromCharCode(...nextFailureMessageInt);
+            sessionStorage.setItem(`messages${i}`, nextFaliureMessageString);
+        }
+    </script>
+</body>
+</html>
