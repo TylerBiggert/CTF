@@ -1,5 +1,9 @@
 # Identify the File
 - `file filenamehere` to get the details
+  - C program - Ghidra
+  - C# program - /usr/share/applications/AvaloniaILSpy/artifacts/ILSpy
+  - .NET program 
+  - Android APK - Jadx
 
 # Metadata
 - exiftool is better than CyberChef
