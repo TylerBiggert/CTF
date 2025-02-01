@@ -1,4 +1,4 @@
-## Ghidra
+## Ghidra (decompiler for C)
 - Go to their GitHub and grab the link for the version you want 
 - Download
   - Open a root terminal
@@ -43,7 +43,45 @@
     - Right click -> add new item -> Launcher
     - Right click Launcher -> Properties -> add -> Ghidra
 
-# Burp Suite
+## ILSpy (C# decompiler)
+- Open a root terminal
+  - Navigate to downloads
+  - `sudo unzip ILSpy-master.zip -d /usr/share/applications`
+  - `wget https://packages.microsoft.com/config/ubuntu/20.04/prod.list`
+  - `sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list`
+  - `sudo apt-get update`
+  - `sudo apt install dotnet-sdk-8.0`
+- Open a root terminal
+    - `cd /usr/share/applications`
+    - `git clone https://github.com/icsharpcode/AvaloniaILSpy.git`
+    - `cd AvaloniaILSpy`
+    - `dotnet tool restore`
+    - `dotnet cake`
+- Icon Creation
+  - Open a root terminal
+    - `cd /usr/share/applications`
+    - `nano ILSpy.desktop`
+    - Add this to the file 
+        -   ```
+            [Desktop Entry]
+            Name=ILSpy
+            Comment=Software Reverse Engineering Tool
+            Exec=/usr/share/applications/AvaloniaILSpy/artifacts/linux-x64/ILSpy
+            Icon=
+            Terminal=false
+            Type=Application
+            Categories=Development;Security;
+            ```
+      - To save: Ctrl + O -> enter -> Ctrl + X
+    - Make it executable `chmod +x /usr/share/applications/ILSpy.desktop`
+  - Panel Bar
+    - Right click -> add new item -> Launcher
+    - Right click Launcher -> Properties -> add -> Ghidra
+- Open the app
+  - Open Folder Navigator -> /usr/share/applications/AvaloniaILSpy/artifacts/ILSpy
+
+
+## Burp Suite
 - Kali Linux Panel -> Applications icon -> 03 - Web Application Analysis -> Burpsuite -> Start
 - Burpsuite 
 	- Proxy -> Proxy Settings -> Import/Export CA certificate -> Certificate in DER format -> Next -> Select file -> Add a file name -> Remember the path where it saved
@@ -63,7 +101,7 @@
   	- Right click the white gear icon -> properties -> Plus Sign to add new item
   	- Search for Burp -> Add burpsuite
 
-# WireShark
+## WireShark
 - Came preinstalled on Kali Linux
 -  Kali Panel
    -  Right click inside the Kali Panel -> Panel -> Add new items -> Launcher -> Add
@@ -71,6 +109,17 @@
       -  Right click the white gear icon -> properties -> Plus Sign to add new item
       -  Search for wire -> Add wireshark
 
-# Command Line Tools
+## Command Line Tools
 - Oletools
   - `sudo -H pip install -U oletools[full]`
+
+## Powershell
+- https://learn.microsoft.com/en-us/powershell/scripting/install/install-debian?view=powershell-7.5
+- Open a root terminal
+  - sudo apt-get update
+  - sudo apt-get install -y wget
+  - wget https://github.com/PowerShell/PowerShell/releases/download/v7.4.7/powershell_7.4.7-1.deb_amd64.deb
+  - sudo dpkg -i powershell_7.4.7-1.deb_amd64.deb
+  - sudo apt-get install -f
+  - rm powershell_7.4.7-1.deb_amd64.deb
+  - pwsh
