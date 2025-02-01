@@ -12,14 +12,14 @@
         <p class="text-lg mb-6">Number of attempts left: <span id="counter">985</span></p>
         <p class="text-lg mb-6">Message: <span id="message"></span></p>
 
-        <button id="clickButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">-</button>
-        <p id="winnerMessage" class="text-2xl font-bold mt-4 hidden">The flag is somewhere else!</p>
+        <button id="clickButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Next</button>
+        <p id="winnerMessage"></p>
     </div>
 
     <script>
         let count = 985;
         const counterDisplay = document.getElementById('counter');
-        const winnerMessage = document.getElementById('winnerMessage');
+        const winnerElement = document.getElementById('winnerMessage');
         const button = document.getElementById('clickButton');
 
         button.addEventListener('click', () => {
@@ -27,7 +27,7 @@
             counter.innerText = count;
             message.innerText = sessionStorage.getItem(`messages${count}`);
             if (count <= 0) {
-                winnerMessage.classList.remove('hidden');
+                winnerElement.innerText = 'The flag is somewhere else!';
                 button.disabled = true;
                 button.classList.add('opacity-50', 'cursor-not-allowed');
             }
