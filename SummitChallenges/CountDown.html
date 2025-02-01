@@ -13,7 +13,7 @@
         <p class="text-lg mb-6">Message: <span id="message"></span></p>
 
         <button id="clickButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">-</button>
-        <p id="winnerMessage" class="text-2xl font-bold mt-4 hidden">The flag is somewhere else!</p>
+        <p id="winnerMessage"></p>
     </div>
 
     <script>
@@ -27,7 +27,7 @@
             counter.innerText = count;
             message.innerText = sessionStorage.getItem(`messages${count}`);
             if (count <= 0) {
-                winnerMessage.classList.remove('hidden');
+                winnerMessage.innerText = 'The flag is somewhere else!';
                 button.disabled = true;
                 button.classList.add('opacity-50', 'cursor-not-allowed');
             }
