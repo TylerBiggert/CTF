@@ -138,3 +138,11 @@ https://docs.docker.com/engine/install/debian/
   sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`
 - `sudo apt update`
 - `sudo apt install -y docker-ce docker-ce-cli containerd.io`
+
+
+## GitHub CLI
+https://cli.github.com/manual/gh
+- `sudo apt install gh`
+- `gh auth login`
+- Login via the browser
+  - The 'authorization code for this device' is back in the terminal
