@@ -22,7 +22,13 @@
    * databases, object storage, AI inference, real-time communication and more.
    * https://developers.cloudflare.com/workers/runtime-apis/bindings/
    */
-
+   ,"d1_databases": [
+    {
+      "binding": "DATABASE_ID",
+      "database_name": "summit-ssn-database",
+      "database_id": "b9f4d5f2-55dd-422e-a95b-7ca2880f22c7"
+    }
+  ]
   /**
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
