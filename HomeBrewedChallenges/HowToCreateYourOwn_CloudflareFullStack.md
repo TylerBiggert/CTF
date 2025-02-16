@@ -91,6 +91,7 @@
 ```
 - `wrangler deploy`
 - Note the URL that it was deployed to
+- TODO - need to add CORS headers so the app will work
 
 ## Connect Frontend to Backend API
 ### Create the service that calls the Comments API
@@ -179,6 +180,8 @@ export class AppComponent implements OnInit {
     - Example that works as well: https://repo-name-frontend.pages.dev/
 
 
-
-
 ### Local Development (worker)
+
+### Styling (Angular Material)
+- npm i @angluar/material
+- angular.json -> styles array -> add `"node_modules/@angular/material/prebuilt-themes/indigo-pink.css"`

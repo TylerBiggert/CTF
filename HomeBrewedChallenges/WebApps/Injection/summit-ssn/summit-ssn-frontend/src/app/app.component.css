@@ -1,0 +1,48 @@
+h1 {
+    color: #004677;
+}
+
+#app--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+#header--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top:  14px;
+    background-color: #fff;
+}
+
+#header--logo {
+    max-height: 100px;
+}
+
+#content--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    width: 50%;
+    gap: 24px;
+}
+
+#content--progress-wrapper {
+    height: 150px;
+}
+
+#footer--container {
+    height: 50px;
+    margin-top: 14px;
+}
+
+.blue-background {
+    background-color: #004677;
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+}
