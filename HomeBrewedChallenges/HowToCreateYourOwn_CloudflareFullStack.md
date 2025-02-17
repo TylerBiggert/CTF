@@ -81,6 +81,7 @@
 - Back in Visual Studio code open /repo-name-here-backend/src/index.ts
 - Update the fetch() to make a database call to the comments table we made earlier
 ```
+		const url = new URL(request.url);
 		if (url.pathname === '/api/comments') {
 		  const result = await env.DATABASE_ID.prepare('SELECT * FROM comments LIMIT 3').all();
 		  return new Response(JSON.stringify(result), {
@@ -90,6 +91,7 @@
 ```
 - `wrangler deploy`
 - Note the URL that it was deployed to
+- TODO - need to add CORS headers so the app will work
 
 ## Connect Frontend to Backend API
 ### Create the service that calls the Comments API
@@ -176,3 +178,10 @@ export class AppComponent implements OnInit {
   - You dont have to include this to go to the most recently deployed version
     - Example fully qualified: https://f5841f29.repo-name-frontend.pages.dev/
     - Example that works as well: https://repo-name-frontend.pages.dev/
+
+
+### Local Development (worker)
+
+### Styling (Angular Material)
+- npm i @angluar/material
+- angular.json -> styles array -> add `"node_modules/@angular/material/prebuilt-themes/indigo-pink.css"`
