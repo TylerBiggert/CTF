@@ -30,8 +30,15 @@ h1 {
     gap: 24px;
 }
 
-#content--progress-wrapper {
+.content--empty-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 150px;
+}
+
+#content--error-wrapper {
+    padding: 24px;
 }
 
 #footer--container {

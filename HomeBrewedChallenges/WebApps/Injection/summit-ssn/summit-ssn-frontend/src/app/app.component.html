@@ -8,7 +8,7 @@
   
   <div id="content--container">
     <div id="content--table-wrapper">
-      <h1>Agent Details for Agency 21</h1>
+      <h1>Agent Details</h1>
       <div class="mat-elevation-z4">
         <table mat-table [dataSource]="dataSource">
           <ng-container matColumnDef="agencyNumber">
@@ -27,8 +27,12 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         @if(!isAgentCallFinished) {
-          <div id="content--progress-wrapper">
+          <div class="content--empty-wrapper">
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+        } @else if (dataSource.data.length == 0) {
+          <div class="content--empty-wrapper">
+            <span>No results - Try again!</span>
           </div>
         }
         <mat-paginator [pageSizeOptions]="[5, 10, 20]"
@@ -52,7 +56,7 @@
         <div id="content--sql-wrapper">
           <h2>SQL That Ran</h2>
           @if(sqlThatRan) {
-            <span>{{sqlThatRan}}</span>
+            <div [innerHTML]="sqlThatRan"></div>
           }
         </div>
       </mat-expansion-panel>

@@ -10,6 +10,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   standalone: true,
@@ -21,9 +22,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   private http: HttpClient = inject(HttpClient);
+  private sanitizer: DomSanitizer = inject(DomSanitizer);
   title = 'summit-ssn-frontend';
   agents: Agent[] = [];
-  sqlThatRan: string = '';
+  sqlThatRan: SafeHtml = '';
   errorMessageFromCall: string = '';
   dataSource = new MatTableDataSource<Agent>();
   @ViewChild (MatPaginator) paginator!: MatPaginator;
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   
   fetchAgents() {
+    this.sqlThatRan = '';
     let agencyNumberFromQueryParam = new URLSearchParams(window.location.search).get('agencyNumber');
 
     if (!agencyNumberFromQueryParam) {
@@ -52,7 +55,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.http.get<AgentResponseBody>(`https://summit-ssn-backend.fozzyfrommuppetsstudio.workers.dev/api/agents?agencyNumber=${agencyNumberFromQueryParam}`)
       .subscribe((data: AgentResponseBody) => {
         this.dataSource.data = data.agents;
-        this.sqlThatRan = data.sqlThatRan;
+        this.sqlThatRan = this.sanitizer.bypassSecurityTrustHtml(data.sqlThatRan);
         this.errorMessageFromCall = data.errorMessage;
       }, (error) => {
         this.errorMessageFromCall = error;
