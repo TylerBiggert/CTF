@@ -24,8 +24,7 @@ h1 {
 #content--container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-self: center;
+    justify-content: space-evenly;
     width: 50%;
     gap: 24px;
 }

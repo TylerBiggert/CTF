@@ -1,0 +1,85 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  color: #004677;
+}
+
+:root {
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  #content--container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  #root {
+    padding: 0px;
+    margin: 0px;
+    max-width: none;
+  }
+
+  #app--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+
+  #header--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top:  14px;
+    background-color: #fff;
+  }
+
+  #header--logo {
+    max-height: 100px;
+  }
+
+  #footer--container {
+    height: 50px;
+    margin-top: 14px;
+  }
+
+  .blue-background {
+      background-color: #004677;
+      color: #fff;
+      text-align: center;
+      font-size: 24px;
+      padding: 10px;
+  }
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
