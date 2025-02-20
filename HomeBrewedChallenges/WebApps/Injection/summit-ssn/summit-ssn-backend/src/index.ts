@@ -17,18 +17,15 @@ export default {
 } satisfies ExportedHandler<Env>;
 
   
-  async function handleAgentsRequest(env: Env, request: Request<unknown, IncomingRequestCfProperties<unknown>>, url: URL) {
+async function handleAgentsRequest(env: Env, request: Request<unknown, IncomingRequestCfProperties<unknown>>, url: URL) {
 	const agencyNumber = url.searchParams.get("agencyNumber");
 	let sqlString = "SELECT FULL_NAME, SSN, AGENCY_NUMBER FROM AGENTS_V WHERE AGENCY_NUMBER = '" + agencyNumber + "' order by FULL_NAME";
-	
+
 	// TODO - Not sure how to set a database to Read Only yet on Cloudflare yet...
-	const denyKeywordList = ['DELETE', 'INSERT', 'UPDATE', 'REPLACE', 'CREATE', 'ALTER', 'DROP', 'RENAME', 'ADD', 'INDEX', 'REINDEX', 'BEGIN', 'COMMIT', 'ROLLBACK', 'SAVEPOINT', 'RELEASE', 'VACUUM', 'ATTACH', 'DETACH', 'PRAGMA', 'TRIGGER'];
-	denyKeywordList.forEach(wordThatIsNotAllowed => {
-		if (sqlString.toUpperCase().includes(wordThatIsNotAllowed)) {
-			const responseBody: AgentResponseBody = new AgentResponseBody({errorMessage: 'Table manipulation is not the answer. Please only do SELECT queries.'});
-			return new Response(JSON.stringify(responseBody));
-		}
-	});
+	if (containsDeniedSQLKeyword(sqlString)) {
+		const responseBody: AgentResponseBody = new AgentResponseBody({errorMessage: 'Table manipulation is not the answer. Please only do SELECT queries.'});
+		return new Response(JSON.stringify(responseBody));
+	}
 
 	let result;
 	try {
@@ -54,19 +51,27 @@ export default {
 			headers: getCORSHeaders()
 		});
 	}
-  }
-  
-  function handlePreflight() {
+}
+
+function handlePreflight() {
 	return new Response(null, {
-	  headers: getCORSHeaders()
+		headers: getCORSHeaders()
 	});
-  }
-  
-  function getCORSHeaders() {
+}
+
+function getCORSHeaders() {
 	return {
-	  "Content-Type": "application/json",
-	  "Access-Control-Allow-Origin": "https://challenge-summit-demo.summit-ssn-frontend.pages.dev",
-	  "Access-Control-Allow-Headers": "Content-Type",
+		"Content-Type": "application/json",
+		"Access-Control-Allow-Origin": "https://challenge-summit-demo.summit-ssn-frontend.pages.dev",
+		"Access-Control-Allow-Headers": "Content-Type",
 	};
-  }
+}
   
+function containsDeniedSQLKeyword(sqlString: string) {
+    const denyKeywordList = ['DELETE', 'INSERT', 'UPDATE', 'REPLACE', 'CREATE', 'ALTER', 'DROP', 'RENAME', 'ADD', 'INDEX', 'REINDEX', 'BEGIN', 'COMMIT', 'ROLLBACK', 'SAVEPOINT', 'RELEASE', 'VACUUM', 'ATTACH', 'DETACH', 'PRAGMA', 'TRIGGER'];
+
+    // Create a case-insensitive regex pattern that matches whole words
+    const regex = new RegExp(`\\b(${denyKeywordList.join('|')})\\b`, 'i');
+
+    return regex.test(sqlString);
+}
