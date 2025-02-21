@@ -60,12 +60,14 @@ function handlePreflight() {
 }
 
 function getCORSHeaders() {
+
 	return {
 		"Content-Type": "application/json",
-		"Access-Control-Allow-Origin": "https://challenge-summit-demo.summit-ssn-frontend.pages.dev",
+		"Access-Control-Allow-Origin": "*",
 		"Access-Control-Allow-Headers": "Content-Type",
 	};
 }
+
   
 function containsDeniedSQLKeyword(sqlString: string) {
     const denyKeywordList = ['DELETE', 'INSERT', 'UPDATE', 'REPLACE', 'CREATE', 'ALTER', 'DROP', 'RENAME', 'ADD', 'INDEX', 'REINDEX', 'BEGIN', 'COMMIT', 'ROLLBACK', 'SAVEPOINT', 'RELEASE', 'VACUUM', 'ATTACH', 'DETACH', 'PRAGMA', 'TRIGGER'];
