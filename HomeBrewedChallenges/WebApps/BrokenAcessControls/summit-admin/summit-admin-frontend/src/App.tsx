@@ -31,31 +31,39 @@ function App() {
   const [cardsData, setCardsData] = useState(initialCardsData);
 
   useEffect(() => {
-    fetch('https://summit-admin-backend.fozzyfrommuppetsstudio.workers.dev/api/auth', { method: 'GET', mode: 'no-cors' })
-      .then((response: Response) => response.json())
-      .then((response) => {
-        if (response.isAuthorizedToFlag) {
-          fetch('https://summit-admin-backend.fozzyfrommuppetsstudio.workers.dev/api/flag', { method: 'GET', mode: 'no-cors', headers: { 'x-api-key': `${process.env.shared_secret_for_requests}` }})
-          .then((response: Response) => response.json())
-          .then((flagText: string) => {
-            setCardsData(prevCards =>
-              prevCards.map(card =>
-                card.id === 3 ? { ...card, text: flagText } : card
-              )
-            );
-          })
-          .catch(error => console.error('Request to retrieve flag text failed:', error));
-        } else {
+    fetch('https://summit-admin-backend.fozzyfrommuppetsstudio.workers.dev/api/auth', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`Request to check isAuthorized failed.`);
+      return response.json();
+    })
+    .then(response => {
+      if (response.isAuthorizedToFlag) {
+        fetch('https://summit-admin-backend.fozzyfrommuppetsstudio.workers.dev/api/flag', {
+          method: 'GET',
+          headers: { 
+            'x-api-key': `${process.env.shared_secret_for_requests}`,
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(response => {
           setCardsData(prevCards =>
-            prevCards.map(card =>
-              card.id === 3 ? { ...card, text: 'You are not authorized to view the flag!!'} : card
-            )
+            prevCards.map(card => card.id === 3 ? { ...card, text: response.errorMessage ? response.errorMessage : response.flagText } : card)
           );
-          console.error('You are not authorized to view the flag!!');
-        }
-      })
-      .catch(error => console.error('Request to check isAuthorized failed:', error));
-  }, []);
+        })
+        .catch(error => console.error('Request to retrieve flag text failed:', error));
+      } else {
+        setCardsData(prevCards =>
+          prevCards.map(card => card.id === 3 ? { ...card, text: 'You are not authorized to view the flag!!'} : card)
+        );
+        console.error('You are not authorized to view the flag!!');
+      }
+    })
+    .catch(error => console.error('Request to check isAuthorized failed:', error));
+  }, []);  
 
   return (
     <>

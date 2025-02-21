@@ -54,7 +54,7 @@ function handlePreflight() {
 function getCORSHeaders() {
 	return {
 		"Content-Type": "application/json",
-		"Access-Control-Allow-Origin": "https://",
+		"Access-Control-Allow-Origin": "https://homebrew-admin.summit-admin-frontend.pages.dev",
 		"Access-Control-Allow-Headers": "Content-Type",
 	};
 }
