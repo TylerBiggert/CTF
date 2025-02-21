@@ -44,7 +44,7 @@ function App() {
         fetch('https://summit-admin-backend.fozzyfrommuppetsstudio.workers.dev/api/flag', {
           method: 'GET',
           headers: { 
-            'x-api-key': `${process.env.shared_secret_for_requests}`,
+            'x-api-key': `${import.meta.env.VITE_API_SECRET}`,
             'Content-Type': 'application/json'
           }
         })
