@@ -18,10 +18,8 @@ export default {
 
   
 async function handleAgentsRequest(env: Env, request: Request<unknown, IncomingRequestCfProperties<unknown>>, url: URL) {
-async function handleAgentsRequest(env: Env, request: Request<unknown, IncomingRequestCfProperties<unknown>>, url: URL) {
 	const agencyNumber = url.searchParams.get("agencyNumber");
 	let sqlString = "SELECT FULL_NAME, SSN, AGENCY_NUMBER FROM AGENTS_V WHERE AGENCY_NUMBER = '" + agencyNumber + "' order by FULL_NAME";
-
 
 	// TODO - Not sure how to set a database to Read Only yet on Cloudflare yet...
 	if (containsDeniedSQLKeyword(sqlString)) {
@@ -59,18 +57,14 @@ async function handleAgentsRequest(env: Env, request: Request<unknown, IncomingR
 	}
 }
 
-function handlePreflight() {
-}
 
 function handlePreflight() {
 	return new Response(null, {
-		headers: getCORSHeaders()
 		headers: getCORSHeaders()
 	});
 }
 
 function getCORSHeaders() {
-
 	return {
 		"Content-Type": "application/json",
 		"Access-Control-Allow-Origin": "*",
