@@ -74,7 +74,7 @@ function App() {
                 <Typography>Hint #1</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">https://owasp.org/Top10/A01_2021-Broken_Access_Control/</a></Typography>
+                <Typography><a href={import.meta.env.VITE_HINT2}>{import.meta.env.VITE_HINT1}</a></Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -82,7 +82,7 @@ function App() {
                 <Typography>Hint #2</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>Client side data must never be trusted.</Typography>
+                <Typography>{import.meta.env.VITE_HINT2}</Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -90,7 +90,7 @@ function App() {
                 <Typography>Hint #3</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>Burp Suite is required to complete this task.</Typography>
+                <Typography>{import.meta.env.VITE_HINT3}</Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -98,7 +98,7 @@ function App() {
                 <Typography>Hint #4</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>Just like HTTP request data, HTTP response can be modified as well. This is why the client must never be trusted.</Typography>
+                <Typography>{import.meta.env.VITE_HINT4}</Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -106,7 +106,7 @@ function App() {
                 <Typography>Hint #5</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>Configure the Burp Suite proxy, Start the intercept, pause on the /auth GET request, right click the row, do intercept, response to this request, Forward, modify the response.</Typography>
+                <Typography>{import.meta.env.VITE_HINT5}</Typography>
               </AccordionDetails>
             </Accordion>
           </div>
