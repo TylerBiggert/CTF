@@ -74,7 +74,7 @@ function App() {
                 <Typography>Hint #1</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography><a href={import.meta.env.VITE_HINT2}>{import.meta.env.VITE_HINT1}</a></Typography>
+                <Typography><a href={import.meta.env.VITE_HINT1}>{import.meta.env.VITE_HINT1}</a></Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
