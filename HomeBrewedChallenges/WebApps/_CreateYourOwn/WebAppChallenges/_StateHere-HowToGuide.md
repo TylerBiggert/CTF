@@ -46,6 +46,7 @@
   - In which directory do you want to create your application?
     - `./repo-name-here-backend` -> enter
   - Choose 'Hello World' example
+    - FYI I am starting to like the 'Hono' template the most for workers
   - Choose 'Hellow World Worker'
   - Do you want to deploy?
     - Left arrow to highlight yes -> enter
@@ -181,7 +182,3 @@ export class AppComponent implements OnInit {
 
 
 ### Local Development (worker)
-
-### Styling (Angular Material)
-- npm i @angluar/material
-- angular.json -> styles array -> add `"node_modules/@angular/material/prebuilt-themes/indigo-pink.css"`
