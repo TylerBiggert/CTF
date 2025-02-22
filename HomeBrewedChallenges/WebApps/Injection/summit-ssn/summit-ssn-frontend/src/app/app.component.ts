@@ -23,7 +23,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class AppComponent implements OnInit, AfterViewInit {
   private http: HttpClient = inject(HttpClient);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
-  title = 'summit-ssn-frontend';
+  title = 'Agent Details';
   agents: Agent[] = [];
   sqlThatRan: SafeHtml = '';
   errorMessageFromCall: string = '';

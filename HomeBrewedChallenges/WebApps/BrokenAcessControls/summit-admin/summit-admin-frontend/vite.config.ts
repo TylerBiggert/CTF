@@ -6,5 +6,8 @@ export default defineConfig({
   plugins: [react()],
   define: {
     'process.env.shared_secret_for_requests': JSON.stringify(process.env.shared_secret_for_requests)
+  },
+  build: {
+    sourcemap: true
   }
 })
