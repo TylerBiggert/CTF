@@ -74,7 +74,7 @@ function App() {
                 <Typography>Hint #1</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography><a href={import.meta.env.VITE_HINT1}>{import.meta.env.VITE_HINT1}</a></Typography>
+                <Typography>{import.meta.env.VITE_HINT1}</Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -95,18 +95,26 @@ function App() {
             </Accordion>
             <Accordion>
               <AccordionSummary>
-                <Typography>Hint #4</Typography>
+                <Typography>Hint #4 - Solution One</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{import.meta.env.VITE_HINT4}</Typography>
+                <Typography>{import.meta.env.VITE_HINT4_SOLUTION1}</Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
               <AccordionSummary>
-                <Typography>Hint #5</Typography>
+                <Typography>Hint #5 - Solution Two</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{import.meta.env.VITE_HINT5}</Typography>
+                <Typography>{import.meta.env.VITE_HINT5_SOLUTION2}</Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary>
+                <Typography>Hint #6 - Solution Three</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>{import.meta.env.VITE_HINT5_SOLUTION3}</Typography>
               </AccordionDetails>
             </Accordion>
           </div>

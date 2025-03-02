@@ -1,3 +1,12 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     color: #004677;
 }
@@ -12,22 +21,38 @@ h1 {
 #header--container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-top:  14px;
+    align-items: center;
+    padding: 1rem;
     background-color: #fff;
 }
 
 #header--logo {
     max-height: 100px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
+.blue-background {
+    background-color: #004677;
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
 }
 
 #content--container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-self: center;
-    width: 50%;
+    align-items: center;
+    width: 95%;
+    max-width: 1200px;
+    margin: 2rem auto;
     gap: 24px;
+}
+
+#content--table-wrapper {
+    width: 100%;
 }
 
 .content--empty-wrapper {
@@ -38,18 +63,27 @@ h1 {
 }
 
 #content--error-wrapper {
-    padding: 24px;
+    padding: 1.5rem;
+    width: 100%;
 }
 
 #footer--container {
-    height: 50px;
-    margin-top: 14px;
-}
-
-.blue-background {
     background-color: #004677;
     color: #fff;
     text-align: center;
-    font-size: 24px;
-    padding: 10px;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    height: 50px;
+}
+
+@media (max-width: 768px) {
+    .blue-background, #footer--container {
+        font-size: 1.25rem;
+        padding: 0.5rem;
+    }
+
+    #header--logo {
+        max-height: 60px;
+    }
 }

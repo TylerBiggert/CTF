@@ -11,6 +11,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { environment } from '../environments/environment';
 
 @Component({
   standalone: true,
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild (MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['agencyNumber', 'fullName', 'SSN'];
   isAgentCallFinished: boolean = false;
-
+  environment = environment;
+  hintFiveText: string = 'Placeholder';
 
   ngOnInit() {
     this.fetchAgents();
