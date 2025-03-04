@@ -30,7 +30,7 @@
   - Install needed dependencies
   - Choose CSS stylesheet if you dont have a preference
   - Do you want to deploy?
-    - Left arrow to highlight yes -> enter
+    - Left arrow to highlight no -> enter
     - Browser will be opened automatically -> login
 
 
@@ -49,7 +49,7 @@
     - FYI I am starting to like the 'Hono' template the most for workers
   - Choose 'Hellow World Worker'
   - Do you want to deploy?
-    - Left arrow to highlight yes -> enter
+    - Left arrow to highlight no -> enter
     - Browser will be opened automatically -> login
 ## Database Template
 ### Creation
@@ -171,6 +171,7 @@ export class AppComponent implements OnInit {
 <router-outlet />
 ```
 ### Deploy changes to Cloudflare
+- Confirm you are on the main branch
 - In the terminal navigate to repo-name-here/repo-name-here-frontend
 - `npm run deploy`
   - If you go into the packages.json file you can see all the scripts you could run
