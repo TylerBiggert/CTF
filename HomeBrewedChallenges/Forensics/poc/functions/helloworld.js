@@ -1,3 +1,3 @@
-export function onRequest(context) {
-    return new Response("Hello, world!")
-}
+export async function onRequest(context) {
+    return new Response("Hello, world!");
+  }
