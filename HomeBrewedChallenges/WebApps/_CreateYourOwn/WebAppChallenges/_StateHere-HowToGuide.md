@@ -30,7 +30,7 @@
   - Install needed dependencies
   - Choose CSS stylesheet if you dont have a preference
   - Do you want to deploy?
-    - Left arrow to highlight no -> enter
+    - Left arrow to highlight yes -> enter
     - Browser will be opened automatically -> login
 
 
@@ -49,7 +49,7 @@
     - FYI I am starting to like the 'Hono' template the most for workers
   - Choose 'Hellow World Worker'
   - Do you want to deploy?
-    - Left arrow to highlight no -> enter
+    - Left arrow to highlight yes -> enter
     - Browser will be opened automatically -> login
 ## Database Template
 ### Creation

@@ -1,0 +1,39 @@
+<div class="instructions--container">
+    <h1>Challenges</h1>
+    <div class="instructions-content--container">
+        <div>
+            <mat-card appearance="outlined">
+                <mat-card-header>
+                    <mat-card-title>Find the Login</mat-card-title>
+                    <mat-card-subtitle>Step One</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Peak's web user registration form is vulnerable. You were able to scrape LinkedIn for insurance agencies who do business with Peak Insurance. Can you find a valid user account?</p>
+                </mat-card-content>
+                <mat-card-footer>
+                    <mat-card-actions>
+                        <button mat-button (onClick)="unsecureFileReader('EMAIL_LIST.txt')">Download Email List</button>
+                        <button mat-button routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Begin</button>
+                    </mat-card-actions>
+                </mat-card-footer>
+            </mat-card>
+        </div> 
+        <div>
+            <mat-card appearance="outlined">
+                <mat-card-header>
+                    <mat-card-title>Find the Password</mat-card-title>
+                    <mat-card-subtitle>Step Two</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Peak's password database table was recently compromised! For $2000 you were able to purchase the list on a dark web forum. Can you log in?</p>
+                </mat-card-content>
+                <mat-card-footer>
+                    <mat-card-actions>
+                        <button mat-button (onClick)="unsecureFileReader('PASSWORD_LIST.txt')">Download Password List</button>
+                        <button mat-button routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Begin</button>
+                    </mat-card-actions>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>
