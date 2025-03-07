@@ -2,9 +2,13 @@
     <h1>User Info</h1>
     @if(isFormSubmitted)
     {
-        @if(formSubmissionResult) {
+        @if(messageToDisplayAfterSubmission) {
             <div>
-                <span>{{formSubmissionResult}}</span>
+                <span id="register-response--message">{{messageToDisplayAfterSubmission}}</span>
+            </div>
+            <div>
+                <a href="/"><button mat-raised-button color="primary" >Back To Steps</button></a>
+                <a href="/register"><button mat-stroked-button color="primary" >Create New User</button></a>
             </div>
         } @else {
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>

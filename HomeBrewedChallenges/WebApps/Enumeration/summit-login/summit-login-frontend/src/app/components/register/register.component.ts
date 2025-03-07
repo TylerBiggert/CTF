@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -9,6 +9,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from "@angular/forms";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -17,9 +18,11 @@ import {
   styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit {
+  private authService: AuthService = inject(AuthService);
   registerForm: FormGroup;
-  formSubmissionResult: string = '';
   isFormSubmitted: boolean = false;
+  isFormSubmissionError: boolean = false;
+  messageToDisplayAfterSubmission: string = '';
 
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
@@ -34,12 +37,29 @@ export class RegisterComponent implements OnInit {
   }
   
   onSubmit() {
-    // TODO - submit form to back end
+    this.isFormSubmissionError = false;
     if(this.registerForm.valid) {
       this.isFormSubmitted = true;
-          // check if user exists
-    // if user exists, return error
-    // if user does not exist, return success message
+      const newUserProfileObj = {fname: this.registerForm.value.fname, lname: this.registerForm.value.lname, email: this.registerForm.value.email, phone: this.registerForm.value.phone};
+      this.authService.saveUserToDataseIfTheyDontExist(newUserProfileObj).subscribe((res: {isExistingEmail: boolean, isError: boolean, errorMessage: string}) => {
+        if(res.isError) {
+          this.isFormSubmissionError = true;
+          this.messageToDisplayAfterSubmission = res.errorMessage;
+          return;
+        }
+
+        if(res.isExistingEmail) {
+          this.messageToDisplayAfterSubmission = 'Error. Please call customer support to discuss your account.';
+        } else {
+          this.messageToDisplayAfterSubmission = 'Success! If this was a real app, the user would have been inserted into the database.';
+        }
+      }, (error) => {
+        this.isFormSubmissionError = true;
+        this.messageToDisplayAfterSubmission = error.errorMessage;
+        return;
+      }, () => {
+
+      });
     }
   }
 }

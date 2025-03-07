@@ -13,10 +13,20 @@ export class AuthService {
 
   constructor() { }
 
-  doesEmailAlreadyExist(emailAddressToCheck: string): Observable<boolean|string> {
-    return this.http.get<boolean>(`${environment.apiBaseUrl}/api/users?email=${emailAddressToCheck}`).pipe(
-      map((isExistingEmailAddress: boolean) => isExistingEmailAddress),
-      catchError((error: HttpErrorResponse) => of(error.message))
+  saveUserToDataseIfTheyDontExist(newUserProfileObj: {lname: string, fname: string, email: string, phone: string}): Observable<{ isExistingEmail: boolean, isError: boolean, errorMessage: string }> {
+    return this.http.post<{ isExistingEmail: boolean }>(`${environment.apiBaseUrl}/users`, newUserProfileObj).pipe(
+      map((res) => ({
+        isExistingEmail: res.isExistingEmail,
+        isError: false,
+        errorMessage: ''
+      })),
+      catchError((error: HttpErrorResponse) => 
+        of({
+          isExistingEmail: false,
+          isError: true,
+          errorMessage: error.message
+        })
+      )
     );
   }
 }

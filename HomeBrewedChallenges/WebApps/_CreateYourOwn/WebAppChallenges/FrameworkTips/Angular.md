@@ -33,8 +33,8 @@ https://material.angular.io/components
   - `/src/environment/environment-dev.ts`
 - Add some variables to all the files
   - export const environment = {
-        HINT_SOLUTION_TEXT: 'testing'
-    };
+    apiBaseUrl: 'http://localhost:8787/api'
+  };
 - Import the file into the component and create the reference variable
   - import { environment } from '../../environments/environment';
   - environment = environment;
