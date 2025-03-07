@@ -1,0 +1,35 @@
+<div class="register--container">
+    <h1>Register</h1>
+    @if(isFormSubmitted)
+    {
+        @if(formSubmissionResult) {
+            <div>
+                <span>{{formSubmissionResult}}</span>
+            </div>
+        } @else {
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        }
+
+    }@else {
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <input matInput placeholder="First name" formControlName="fname">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Last name" formControlName="lname">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="email">
+                @if(registerForm.get('email')?.hasError('required')) {
+                    <mat-error>Email is required</mat-error>
+                }@else if (registerForm.get('email')?.hasError('email')) {
+                    <mat-error>Email is not valid</mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Phone" formControlName="phone">
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Register</button>
+        </form>
+    }
+</div>
