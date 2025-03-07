@@ -11,12 +11,5 @@ import { RouterLinkActive } from '@angular/router';
   styleUrl: './instructions.component.css'
 })
 export class InstructionsComponent {
-  unsecureFileReader(fileName: "PASSWORD_LIST.txt"|"EMAIL_LIST.txt") {
-    const link = document.createElement('a'); 
-    link.href = `assets/${fileName}`; 
-    link.download = fileName; 
-    document.body.appendChild(link); 
-    link.click(); 
-    document.body.removeChild(link); 
-  }
+
 }

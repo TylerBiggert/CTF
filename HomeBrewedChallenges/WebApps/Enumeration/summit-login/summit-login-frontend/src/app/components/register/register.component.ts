@@ -35,9 +35,12 @@ export class RegisterComponent implements OnInit {
   
   onSubmit() {
     // TODO - submit form to back end
-    // check if user exists
+    if(this.registerForm.valid) {
+      this.isFormSubmitted = true;
+          // check if user exists
     // if user exists, return error
     // if user does not exist, return success message
+    }
   }
 }
 

@@ -32,8 +32,7 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/_routes.json",
-              "src/assets"
+              "src/_routes.json"
             ],
             "styles": [
               "src/styles.css",
@@ -49,20 +48,9 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB"
-                }
-              ],
               "outputHashing": "all"
             },
             "development": {
-
             }
           },
           "defaultConfiguration": "production"
