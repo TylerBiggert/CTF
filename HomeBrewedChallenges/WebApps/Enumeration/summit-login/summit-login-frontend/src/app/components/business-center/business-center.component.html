@@ -1,1 +1,10 @@
-<p>business-center works!</p>
+@if(isFlagTextCallRunning) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+} @else {
+    <div class="business--container">
+        <h2>Business Center</h2>
+        <div>
+            <span>{{flagTextToDisplay}}</span>
+        </div>
+    </div>
+}

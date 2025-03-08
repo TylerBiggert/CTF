@@ -46,4 +46,5 @@ https://material.angular.io/components
         "with": "src/environments/environment.dev.ts"
       }
     ]
-- 
+
+# Authentication

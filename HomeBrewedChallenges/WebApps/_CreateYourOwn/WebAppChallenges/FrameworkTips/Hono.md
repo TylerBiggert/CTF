@@ -32,7 +32,7 @@ https://github.com/honojs/examples/blob/main/basic/src/index.ts
 - Back in Visual Studio code open /repo-name-here-backend/src/index.ts
 - Update the fetch() to make a database call to the comments table we made earlier
 
-
+SummitCTF{M3ss4Ges_H4v3_Mean1ng5}
 # Secrets
 - `npx wranger secret put SECTET_NAME_HERE` -> enter -> add the value
 - `npm run cf-typegen`

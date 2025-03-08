@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="login--container">
+    <h1>Login</h1>
+    <div class="login-content--form-container">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="email">
+                @if(loginForm.get('email')?.hasError('required')) {
+                    <mat-error>Email is required</mat-error>
+                }@else if (loginForm.get('email')?.hasError('email')) {
+                    <mat-error>Email is not valid</mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Password" formControlName="password" type="password">
+                @if(loginForm.get('password')?.hasError('required')) {
+                    <mat-error>Password is required</mat-error>
+                }
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">LOGIN</button>
+            <a href="/register"><button mat-stroked-button color="primary">REQUEST A LOGIN</button></a>
+            <a href="/"><button mat-stroked-button color="primary">BACK</button></a>
+        </form>
+        <div>
+            <span>As a prerequisite to viewing the information on Peak's website, I agree to comply with all applicable privacy laws and to keep all proprietary information, all nonpublic personal information, and any other confidential information that I view or acquire on Peak's website, confidential. I understand that by logging in, I agree with these terms. </span>
+        </div>
+    </div>
+</div>
