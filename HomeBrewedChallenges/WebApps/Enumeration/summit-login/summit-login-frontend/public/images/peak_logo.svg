@@ -1,0 +1,30 @@
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_26">
+   <ellipse ry="80.5" rx="79.5" id="svg_5" cy="101.17039" cx="96.25978" stroke-width="0" stroke="#000" fill="#b2b2b2"/>
+   <path id="svg_3" d="m151.75978,35.67039l-11,14.5" opacity="NaN" stroke-width="0" stroke="#000" fill="#000000"/>
+   <ellipse ry="77.5" rx="75" id="svg_6" cy="106.1704" cx="98.75978" stroke-width="0" stroke="#b2b2b2" fill="#ffffff"/>
+   <text transform="matrix(5.38049, 0, 0, 5.13466, -1677.28, -1073.72)" xml:space="preserve" text-anchor="start" font-family="'Roboto Mono'" font-size="24" id="svg_1" y="238.84232" x="326.55735" stroke-width="0" stroke="#000" fill="#004677">peak</text>
+   <g stroke-width="3" id="svg_25">
+    <g id="svg_22">
+     <g id="svg_17">
+      <g id="svg_13">
+       <line id="svg_11" y2="99.66331" x2="69.03512" y1="170.55267" x1="55.48812" stroke="#b2b2b2" fill="#004677"/>
+       <line id="svg_12" y2="100.26805" x2="68.84045" y1="119.62556" x1="76.77235" stroke="#b2b2b2" fill="#004677"/>
+      </g>
+      <g id="svg_16">
+       <line id="svg_14" y2="79.51383" x2="83.70421" y1="119.96063" x1="76.71446" stroke="#b2b2b2" fill="#004677"/>
+       <line id="svg_15" y2="78.3318" x2="83.44494" y1="90.04008" x1="87.77193" stroke="#b2b2b2" fill="#004677"/>
+      </g>
+     </g>
+     <line id="svg_18" y2="35.92048" x2="94.39491" y1="89.39776" x1="87.91317" stroke="#b2b2b2" fill="#004677"/>
+     <line id="svg_19" y2="37.57869" x2="94.39491" y1="78.6194" x1="100.87665" stroke="#b2b2b2" fill="#004677"/>
+     <line id="svg_21" y2="77.79029" x2="100.87665" y1="69.49924" x1="103.98788" stroke="#b2b2b2" fill="#004677"/>
+    </g>
+    <line id="svg_23" y2="70.77539" x2="103.85721" y1="87.79668" x1="110.8481" stroke="#b2b2b2" fill="#004677"/>
+   </g>
+  </g>
+ </g>
+</svg>

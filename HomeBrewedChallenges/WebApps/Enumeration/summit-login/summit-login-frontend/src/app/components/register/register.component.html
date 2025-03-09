@@ -6,8 +6,7 @@
             @if(isFormSubmitted){
                 @if(!isFormSubmissionCallRunning) {
                     <div>
-                        <h1 class="centered-text">Register New Account</h1>
-                        <h2>{{isFormSubmissionError ? 'Error!' : 'Success!'}}</h2>
+                        <h1>{{isFormSubmissionError ? 'Error!' : 'Success!'}}</h1>
                         <span id="register-response--message">{{messageToDisplayAfterSubmission}}</span>
                     </div>
                     <div>
@@ -19,7 +18,7 @@
             }@else {
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="form-content--field-container">
-                        <h1 class="centered-text">Register New Account</h1>
+                        <h1 class="centered-text">Request a Login</h1>
                         <mat-form-field appearance="outline">
                             <input matInput placeholder="First name" formControlName="fname">
                         </mat-form-field>
