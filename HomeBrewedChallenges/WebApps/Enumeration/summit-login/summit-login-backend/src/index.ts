@@ -19,8 +19,8 @@ app.use(
   '*',
   cors({
     origin: ['http://localhost:8788', 'https://summit-login.pages.dev'],
-    allowHeaders: ['Content-Type', 'Authorization'],
-    allowMethods: ['GET', 'POST', 'OPTIONS'],
+    allowHeaders: [],
+    allowMethods: [],
     exposeHeaders: [],
     maxAge: 600
   })
