@@ -3,6 +3,9 @@
         <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmitted()">
             <div class="form-content--field-container">
                 <h1 class="centered-text">Login</h1>
+                @if(errorMessage && loginForm.get('email')?.value == '') {
+                    <span>{{errorMessage}}</span>
+                }
                 <mat-form-field appearance="outline">
                     <input matInput placeholder="Email" formControlName="email">
                     @if(loginForm.get('email')?.hasError('required')) {
@@ -33,7 +36,7 @@
                 <mat-expansion-panel-header>
                     <mat-panel-title> Hint #1 </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>If you have not downloaded the username list, <a href="/files/EMAIL_LIST.txt" download>do so here</a>. If you did, procede to the next hint.</p>
+                <p>If you have not downloaded the password list, <a href="/files/PASSWORD_LIST.txt" download>do so here</a>. If you did, procede to the next hint.</p>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -52,20 +55,21 @@
                     <mat-panel-title> Hint #4 - Solution</mat-panel-title>
                 </mat-expansion-panel-header>
                 <ol>
-                    <li>Download the username list to your downloads directory</li>
+                    <li>You should have already gotten the valid email address from step one</li>
+                    <li>Download the password list to your downloads directory</li>
                     <li>Launch BurpSuite</li>
                     <li>Depending on your BurpSuite configuration, either launch the BurpSuite browser or use a Browser Extension</li>
-                    <li>Browswer -> Fill out the user profile registration form manually with any info you want</li>
+                    <li>Browswer -> Fill out the valid email from step one. Put in any random password you want</li>
                     <li>BurpSuite -> Proxy Tab -> Turn on intercept to start capturing traffic</li>
                     <li>Browser -> Click register button to submit the form</li>
-                    <li>BurpSuite -> You should see /api/users OPTIONS requet -> Forward</li>
-                    <li>You should see /api/users POST requet -> Right Click -> Send to Intruder</li>
+                    <li>BurpSuite -> You should see /api/users/login OPTIONS requet -> Forward</li>
+                    <li>You should see /api/users/login POST requet -> Right Click -> Send to Intruder</li>
                     <li>Toggle off the proxy intercept off -> Go to Intruder tab</li>
-                    <li>Highlight the email address you used inside the double quotes -> Click the 'Add S' button next to POSITIONS to make it a position variable</li>
-                    <li>In the 'Payload Configuration' section click load -> Selet the EMAIL_LIST.txt file</li>
+                    <li>Highlight the password you used inside the double quotes -> Click the 'Add S' button next to POSITIONS to make it a position variable</li>
+                    <li>In the 'Payload Configuration' section click load -> Selet the PASSWORD_LIST.txt file</li>
                     <li>In the 'Payload Encoding' section, toggle off URL Encoding</li>
                     <li>Click the Start Attack button -> Wait for the attack to finish -> Sort be response codes</li>
-                    <li>Select the one with the 418 response code -> Review the request and see the email was <code>atorres&#64;gmail.com</code></li>
+                    <li>There is one response code of 200 for password "mustag". Use the valid email and this password to login and get the flag</li>
                 </ol>
             </mat-expansion-panel>
         </mat-accordion>

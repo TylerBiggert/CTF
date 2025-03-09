@@ -1,0 +1,20 @@
+.business--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    max-width: 800px;
+    margin: auto;
+    gap: 32px;
+}
+
+.business-content--form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    max-width: 1080px;
+    padding: 0 16px 16px 16px;
+    gap: 32px;
+}

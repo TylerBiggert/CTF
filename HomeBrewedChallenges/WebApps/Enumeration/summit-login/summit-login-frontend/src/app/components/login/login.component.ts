@@ -47,6 +47,7 @@ export class LoginComponent {
             if (isLoginSuccessful) {
               this.router.navigate(['secured/business-center']);
             } else {
+              this.loginForm.reset({email: '', password: ''});
               this.errorMessage = 'Invalid email or password';
             }
           },

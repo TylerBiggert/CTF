@@ -11,10 +11,11 @@ import {
 } from "@angular/forms";
 import { AuthService } from '../../services/auth.service';
 import { take } from 'rxjs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressBarModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressBarModule, MatExpansionModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -30,8 +31,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       fname: [""],
       lname: [""],
-      email: ["", [Validators.required, Validators.email]],
-      phone: [""]
+      email: ["", [Validators.required, Validators.email]]
     });
   }
 
@@ -47,28 +47,26 @@ export class RegisterComponent implements OnInit {
       this.isFormSubmissionCallRunning = true;
       this.authService.saveUserToDataseIfTheyDontExist(newUserProfileObj).pipe(take(1)).subscribe({
         next: (res: { isExistingEmail: boolean, isError: boolean, errorMessage: string }) => {
-          if (res.isError) {
-            this.isFormSubmissionError = true;
-            this.messageToDisplayAfterSubmission = res.errorMessage;
+          if (!res.isError && !res.isExistingEmail) {
+            this.messageToDisplayAfterSubmission = 'We have received your registration request. Your new account will be created within three days.';
             return;
           }
-
-          if (res.isExistingEmail) {
-            this.messageToDisplayAfterSubmission = 'Error. Please call customer support to discuss your account.';
-          } else {
-            this.messageToDisplayAfterSubmission = 'Success! If this was a real app, the user would have been inserted into the database.';
-          }
+          
+          this.handleFormSubmissionError('Please call customer support to discuss your account.');
         },
         error: (error) => {
-          this.isFormSubmissionError = true;
-          this.messageToDisplayAfterSubmission = error.errorMessage;
-          return;
+          this.handleFormSubmissionError('Please call customer support to discuss your account.')
         },
         complete: () => {
           this.isFormSubmissionCallRunning = false;
         },
       });
     }
+  }
+
+  handleFormSubmissionError(errorMessage: string) {
+    this.isFormSubmissionError = true;
+    this.messageToDisplayAfterSubmission = errorMessage;
   }
 }
 

@@ -2,9 +2,14 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 } @else {
     <div class="business--container">
-        <h2>Business Center</h2>
-        <div>
-            <span>{{flagTextToDisplay}}</span>
+        <div class="business-content--form-container mat-elevation-z3">
+            <h1>Secured Business Center</h1>
+            <div>
+                <h2>Web User Info</h2>
+                <div>Email: {{loggedInWebUserEmail}}</div>
+                <div>UUID: {{loggedInWebUserUUID}}</div>
+                <div>{{flagTextToDisplay}}</div>
+            </div>
         </div>
     </div>
 }

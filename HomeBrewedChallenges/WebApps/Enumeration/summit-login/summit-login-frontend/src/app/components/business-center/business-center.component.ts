@@ -14,6 +14,9 @@ export class BusinessCenterComponent implements OnInit {
   private authService: AuthService = inject(AuthService);
   flagTextToDisplay = '[FLAG REDACTED]';
   isFlagTextCallRunning: boolean = true;
+  loggedInWebUserUUID: any;
+  loggedInWebUserEmail: any;
+  tokenExpiration: any;
 
   ngOnInit(): void {
     this.getFlagText();
@@ -22,7 +25,10 @@ export class BusinessCenterComponent implements OnInit {
   getFlagText(): void {
     this.authService.getFlagText().pipe(take(1)).subscribe({
       next: (realFlagText: string) => {
-        this.flagTextToDisplay = realFlagText;
+        if (realFlagText) {
+          this.flagTextToDisplay = realFlagText;
+          this.setLoggedInInfo();
+        }
       },
       error: (err) => {
         this.flagTextToDisplay = 'Error';
@@ -31,5 +37,25 @@ export class BusinessCenterComponent implements OnInit {
         this.isFlagTextCallRunning = false;
       },
     });
+  }
+
+  setLoggedInInfo() {
+    const token = localStorage.getItem('jwt_token');
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT payload
+        const { email, webUserUUID, exp } = payload;
+        this.loggedInWebUserUUID = webUserUUID;
+        this.loggedInWebUserEmail = email;
+        this.tokenExpiration = exp;
+
+        
+        // Store or use email and uuid as needed
+      } catch (error) {
+        console.error('Invalid token:', error);
+      }
+    } else {
+      console.warn('No JWT token found in local storage.');
+    }
   }
 }

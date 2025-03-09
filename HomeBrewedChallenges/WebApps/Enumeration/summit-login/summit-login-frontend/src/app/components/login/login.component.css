@@ -33,6 +33,10 @@
     gap: 8px;
 }
 
+.login-content--hint-wrapper {
+    padding-bottom: 32px;
+}
+
 .centered-text {
     text-align: center;;
 }
