@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {
   FormBuilder,
   FormGroup,
@@ -11,11 +12,11 @@ import {
 } from "@angular/forms";
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressBarModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule, MatProgressBarModule, MatExpansionModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -33,7 +34,7 @@ export class LoginComponent {
     });
   }
 
-  async onSubmit() {
+  onLoginFormSubmitted() {
     if(this.loginForm.valid) {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
@@ -41,18 +42,21 @@ export class LoginComponent {
         this.isAuthProcessRunning = true;
         this.errorMessage = '';
       
-        try {
-          const isLoginSuccessful = await firstValueFrom(this.authService.simpleLoginNotFullBlownJwtImplementation(email, password));
-          if (isLoginSuccessful) {
-            this.router.navigate(['secured/business-center']);
-          } else {
-            this.errorMessage = 'Invalid email or password';
-          }
-        } catch (error) {
-          this.errorMessage = 'Error';
-        } finally {
-          this.isAuthProcessRunning = false;
-        }
+        this.authService.simpleLoginNotFullBlownJwtImplementation(email, password).pipe(take(1)).subscribe({
+          next: (isLoginSuccessful: boolean) => {
+            if (isLoginSuccessful) {
+              this.router.navigate(['secured/business-center']);
+            } else {
+              this.errorMessage = 'Invalid email or password';
+            }
+          },
+          error: (err) => {
+            this.errorMessage = 'Error';
+          },
+          complete: () => {
+            this.isAuthProcessRunning = false;
+          },
+        });
       }
     }
   }

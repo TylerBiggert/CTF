@@ -2,16 +2,34 @@ import { Hono } from 'hono'
 import { poweredBy } from 'hono/powered-by'
 import { cors } from 'hono/cors'
 import { jwt } from 'hono/jwt'
-import type { JwtVariables } from 'hono/jwt'
 import { sign } from 'hono/jwt'
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
-// Mount Builtin Middleware
+/**
+ * Not sure what this is for yet, but they used it in the Hono docs
+ */
 app.use('*', poweredBy())
-app.use('*', cors())
 
-// Validate JWT inside Authorization header for every request to /api/secured/*
+/**
+ * This is only needed until I figure out how to use Cloudflare Functions
+ * The frontend and backend run on different servers/origins, so to share resources we need to setup CORS
+ */
+app.use(
+  '*',
+  cors({
+    origin: ['http://localhost:8788', 'https://summit-login.pages.dev'],
+    allowHeaders: [],
+    allowMethods: [],
+    exposeHeaders: [],
+    maxAge: 600
+  })
+)
+
+/**
+ * Hono Middleware
+ * Validates the JWT inside Authorization header for every request to /api/secured/*
+ */
 app.use('/api/secured/*', (c, next) => {
   const jwtMiddleware = jwt({
     secret: c.env.JWT_SECRET,
@@ -19,16 +37,12 @@ app.use('/api/secured/*', (c, next) => {
   return jwtMiddleware(c, next)
 })
 
-app.get('/api/secured/flag', (c) => {
-  const flagText = c.env.FLAG_TEXT;
-  if (flagText) {
-    return c.json({returnText: c.env.FLAG_TEXT}, 200);
-  }
-
-  return c.json({returnText: 'Sorry, this challenge is broken. Please message the creator to fix this.'}, 500);
-});
-
+/**
+ * Simulates creating a new user
+ * Used within the User Profile
+ */
 app.post('/api/users', async (c) => {
+  // Make sure the required field is present
   const requestBodyJson = await c.req.json();
   const emailAressToCheck = requestBodyJson.email;
   if (!emailAressToCheck) {
@@ -36,18 +50,21 @@ app.post('/api/users', async (c) => {
   }
 
   try {
+    // Make sure the account the user is registering doesnt already exist.
     const resultsArray: D1Result<Record<string, unknown>> = await c.env.DB1.prepare('SELECT 1 FROM users WHERE email = ? LIMIT 1').bind(emailAressToCheck).run();
     if (!resultsArray.success) {
       return c.json({ err: 'Error'}, 500);
-    }
-    // Someone tried to create an account when they already had one....LOL!!!
-    if (resultsArray.results.length > 0) {
+    } else if (resultsArray.results.length > 0) {
+      // Prevent duplicate user creation
       return c.json({ isExistingEmail: true }, 418);
     }
 
-    /**
-     * Save user to the database after validating the request body...
-     */
+    //
+    //
+    //  Logic regarding creating and inserting the new user would go here
+    //
+    //
+
     return c.json({ isExistingEmail: false }, 200);
   } catch (e) {
     return c.json({ err: 'Error'}, 500);
@@ -84,6 +101,19 @@ app.post('/api/users/login', async (c) => {
   }
   
   return c.json({ isLoginSuccessful: false, jwt_token: '' }, 401);
+});
+
+/**
+ * Flag to simulate an endpoint containing sensitive data normally restricted to a logged in user
+ */
+app.get('/api/secured/flag', (c) => {
+  const flagText = c.env.FLAG_TEXT;
+  if (flagText) {
+    return c.json({returnText: c.env.FLAG_TEXT}, 200);
+  }
+
+  // Should never happen, unless the environment variable did not load properly..check the bindings and type
+  return c.json({returnText: 'Sorry, this challenge is broken. Please message the creator to fix this.'}, 500);
 });
 
 export default app

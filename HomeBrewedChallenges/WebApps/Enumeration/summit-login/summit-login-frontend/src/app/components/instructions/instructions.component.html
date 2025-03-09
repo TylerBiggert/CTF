@@ -4,16 +4,16 @@
         <div>
             <mat-card appearance="outlined">
                 <mat-card-header>
-                    <mat-card-title>Find the Login</mat-card-title>
+                    <mat-card-title>Username Enumeration</mat-card-title>
                     <mat-card-subtitle>Step One</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
-                    <p>Peak's web user registration form is vulnerable. You were able to scrape LinkedIn for insurance agencies who do business with Peak Insurance. Can you enumerate a valid user account?</p>
+                    <p>Peak Insurance's web user registration form is vulnerable! You were able to scrape LinkedIn for 1,000 insurance agencies who do business with Peak Insurance. Can you enumerate a valid user account?</p>
                 </mat-card-content>
                 <mat-card-footer>
                     <mat-card-actions>
-                        <a href="/files/EMAIL_LIST.txt" download><button mat-button>Download Email List</button></a>
-                        <button mat-button routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Begin Step One</button>
+                        <a href="/files/EMAIL_LIST.txt" download><button mat-button mat-stroked-button color="primary">Download Email List</button></a>
+                        <a href="/register"><button mat-button mat-raised-button color="primary">Begin Step One</button></a>
                     </mat-card-actions>
                 </mat-card-footer>
             </mat-card>
@@ -21,16 +21,16 @@
         <div>
             <mat-card appearance="outlined">
                 <mat-card-header>
-                    <mat-card-title>Find the Password</mat-card-title>
+                    <mat-card-title>Password Brute Force</mat-card-title>
                     <mat-card-subtitle>Step Two</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
-                    <p>Peak's password database table was recently compromised! For a couple bitcoin you were able to purchase the password list on a dark web forum. Can you brute force log in?</p>
+                    <p>Peak Insurance's password database was recently compromised! For a couple bitcoin you were able to purchase the 100,000 password list on a dark web forum. Can you access the secured site?</p>
                 </mat-card-content>
                 <mat-card-footer>
                     <mat-card-actions>
-                        <a href="/files/PASSWORD_LIST.txt" download><button mat-button>Download Password List</button></a>
-                        <button mat-button routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Begin Step Two</button>
+                        <a href="/files/PASSWORD_LIST.txt" download><button mat-button mat-stroked-button color="primary">Download Password List</button></a>
+                        <a href="/login"><button mat-button mat-raised-button color="primary">Begin Step Two</button></a>
                     </mat-card-actions>
                 </mat-card-footer>
             </mat-card>

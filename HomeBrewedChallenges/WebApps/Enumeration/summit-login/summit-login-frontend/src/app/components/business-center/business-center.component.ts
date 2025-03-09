@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { catchError, map, of } from 'rxjs';
+import { catchError, map, of, take } from 'rxjs';
 
 @Component({
   selector: 'app-business-center',
@@ -20,17 +20,16 @@ export class BusinessCenterComponent implements OnInit {
   }
 
   getFlagText(): void {
-    this.authService.getFlagText().subscribe({
+    this.authService.getFlagText().pipe(take(1)).subscribe({
       next: (realFlagText: string) => {
-        console.log('inside next(): ' + realFlagText)
         this.flagTextToDisplay = realFlagText;
-        this.isFlagTextCallRunning = false;
       },
       error: (err) => {
-        console.log('getFlagTextError(): ' + err)
         this.flagTextToDisplay = 'Error';
+      },
+      complete: () => {
         this.isFlagTextCallRunning = false;
-      }
+      },
     });
   }
 }

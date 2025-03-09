@@ -16,7 +16,8 @@ export class AuthService {
   constructor() { }
 
   saveUserToDataseIfTheyDontExist(newUserProfileObj: {lname: string, fname: string, email: string, phone: string}): Observable<{ isExistingEmail: boolean, isError: boolean, errorMessage: string }> {
-    return this.http.post<{ isExistingEmail: boolean }>(`${environment.apiBaseUrl}/users`, newUserProfileObj).pipe(
+    const apiEndpoint = `${environment.apiBaseUrl}/users`;
+    return this.http.post<{ isExistingEmail: boolean }>(apiEndpoint, newUserProfileObj).pipe(
       map((res) => ({
         isExistingEmail: res.isExistingEmail,
         isError: false,
@@ -33,15 +34,15 @@ export class AuthService {
   }
 
   /**
-   * TODO - someday implement the full JWT auth flow
+   * TODO - someday implement the full JWT auth flow, but this should help against some cheese
    * https://blog.angular-university.io/angular-jwt-authentication/
    */
   simpleLoginNotFullBlownJwtImplementation(email: string, password: string): Observable<boolean> {
-    return this.http.post<{isLoginSuccessful: boolean, jwt_token: string}>(`${environment.apiBaseUrl}/users/login`, { email, password }).pipe(
+    const apiEndpoint = `${environment.apiBaseUrl}/users/login`;
+    return this.http.post<{isLoginSuccessful: boolean, jwt_token: string}>(apiEndpoint, { email, password }).pipe(
       map((res: {isLoginSuccessful: boolean, jwt_token: string}) => {
-        const jwt_token = res.jwt_token;
-        if (jwt_token) {
-          this.jwtService.setTokenInLocalStorage(jwt_token);
+        if (res.isLoginSuccessful && res.jwt_token) {
+          this.jwtService.setTokenInLocalStorage(res.jwt_token);
           return true;
         }
 
@@ -49,20 +50,16 @@ export class AuthService {
       }),
       catchError((error: HttpErrorResponse) => {
         return of(false);
-      }
-      )
+      })
     );
   }
 
   getFlagText(): Observable<string> {
-    // TODO - could move logic to an HTTP Interceptor to attach the token for every request to /secured/
-    const reqHeaders = new HttpHeaders()
-      .set('Authorization', `Bearer ${this.jwtService.getTokenFromLocalStorage()}`);
+    // Could move logic to an HTTP Interceptor to attach the token for every request to /secured/ for larger apps
+    const reqHeaders = new HttpHeaders().set('Authorization', `Bearer ${this.jwtService.getTokenFromLocalStorage()}`);
 
     return this.http.get<{returnText: string}>(`${environment.apiBaseUrl}/secured/flag`, { headers: reqHeaders }).pipe(
       map((res: {returnText: string}) => res.returnText)
     );
   }
-
-
 }

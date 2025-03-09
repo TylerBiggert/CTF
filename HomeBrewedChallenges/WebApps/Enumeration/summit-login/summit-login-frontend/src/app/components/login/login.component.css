@@ -1,0 +1,38 @@
+.login--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    max-width: 800px;
+    margin: auto;
+    gap: 32px;
+}
+
+.login-content--form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    max-width: 1080px;
+    padding: 0 16px 16px 16px;
+    gap: 32px;
+}
+
+.form-content--field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+}
+
+.form-actions--button-contaienr {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 8px;
+}
+
+.centered-text {
+    text-align: center;;
+}
