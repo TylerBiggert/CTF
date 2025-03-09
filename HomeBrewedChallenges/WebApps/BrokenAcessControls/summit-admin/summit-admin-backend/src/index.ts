@@ -25,7 +25,7 @@ export default {
 async function handleFlagTextRequest(env: Env, request: Request<unknown, IncomingRequestCfProperties<unknown>>, url: URL) {
 	const secretPassedInTheRequest = request.headers.get('x-api-key') ?? '';
 	if (!secretPassedInTheRequest) {
-		const responseBody = {flagText: '', errorMessage: 'Dont call this endpoint directly. An x-api-key header must be attached.'};
+		const responseBody = {flagText: '', errorMessage: 'Not authorized to this endpoint.'};
 		return new Response(JSON.stringify(responseBody), {
 			headers: getCORSHeaders()
 		});
@@ -38,7 +38,7 @@ async function handleFlagTextRequest(env: Env, request: Request<unknown, Incomin
 			headers: getCORSHeaders()
 		});
 	} else {
-		const responseBody = {flagText: '', errorMessage: 'Dont call this endpoint directly. The valid x-api-key must be attached.'};
+		const responseBody = {flagText: '', errorMessage: 'Not authorized to this endpoint.'};
 		return new Response(JSON.stringify(responseBody), {
 			headers: getCORSHeaders()
 		});

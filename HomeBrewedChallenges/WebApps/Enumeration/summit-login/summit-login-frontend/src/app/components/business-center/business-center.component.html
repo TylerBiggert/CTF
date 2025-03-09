@@ -1,1 +1,15 @@
-<p>business-center works!</p>
+@if(isFlagTextCallRunning) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+} @else {
+    <div class="business--container">
+        <div class="business-content--form-container mat-elevation-z3">
+            <h1>Secured Business Center</h1>
+            <div>
+                <h2>Web User Info</h2>
+                <div>Email: {{loggedInWebUserEmail}}</div>
+                <div>UUID: {{loggedInWebUserUUID}}</div>
+                <div>{{flagTextToDisplay}}</div>
+            </div>
+        </div>
+    </div>
+}

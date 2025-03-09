@@ -22,6 +22,13 @@
 	 * databases, object storage, AI inference, real-time communication and more.
 	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
 	 */
+	 ,"d1_databases": [
+		{
+		  "binding": "DB1",
+		  "database_name": "summit-login-database",
+		  "database_id": "f568173c-2a86-4d47-91d0-32e7ba5039c9"
+		}
+	  ]
 
 	/**
 	 * Environment Variables
