@@ -18,9 +18,9 @@ app.use('*', poweredBy())
 app.use(
   '*',
   cors({
-    origin: ['http://localhost:8788', 'https://summit-login.pages.dev', 'https://summit-login-backend.pages.dev'],
-    allowHeaders: [],
-    allowMethods: [],
+    origin: ['http://localhost:8788', 'https://summit-login.pages.dev'],
+    allowHeaders: ['Content-Type', 'Authorization'],
+    allowMethods: ['GET', 'POST', 'OPTIONS'],
     exposeHeaders: [],
     maxAge: 600
   })
