@@ -13,3 +13,14 @@
     gap: 16px;
     width: 70%;
 }
+
+button.blue-button {
+    background-color:#004677;
+    color: white;
+}
+
+button.white-button {
+    background-color:white;
+    color: #004677;
+    border-color: #004677;
+}

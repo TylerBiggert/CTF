@@ -10,9 +10,9 @@
                         <span id="register-response--message">{{messageToDisplayAfterSubmission}}</span>
                     </div>
                     <div>
-                        <a href="/"><button mat-raised-button color="primary">Back</button></a>
-                        <a href="/register"><button mat-stroked-button color="primary">Register</button></a>
-                        <a href="/login"><button mat-stroked-button color="primary">Login</button></a>
+                        <a href="/"><button mat-raised-button class="blue-button">Back</button></a>
+                        <a href="/register"><button mat-stroked-button class="white-button">Register</button></a>
+                        <a href="/login"><button mat-stroked-button class="white-button">Login</button></a>
                     </div>
                 }
             }@else {
@@ -34,8 +34,8 @@
                             }
                         </mat-form-field>
                         <div class="form-actions--button-contaienr">
-                            <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Register</button>
-                            <a href="/"><button mat-stroked-button color="primary" type="button">Cancel</button></a>
+                            <button mat-raised-button class="blue-button" type="submit" [disabled]="registerForm.invalid">Register</button>
+                            <a href="/"><button mat-stroked-button type="button" class="white-button">Cancel</button></a>
                         </div>
                     </div>
                 </form>
