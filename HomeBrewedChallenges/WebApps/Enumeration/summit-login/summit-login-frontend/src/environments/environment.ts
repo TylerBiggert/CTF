@@ -1,3 +1,3 @@
 export const environment = {
-    apiBaseUrl: 'https://summit-login-backend.pages.dev/api'
+    apiBaseUrl: 'summit-login-backend.fozzyfrommuppetsstudio.workers.dev/api'
 };
