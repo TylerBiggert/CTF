@@ -1,4 +1,7 @@
 # New App Creation
+## Cloudflare Account Creation
+- Verify you can login to Cloudflare
+  - If not then you will need to create your account now at https://www.cloudflare.com/
 ## Create a Repository
 - Open a root terminal
 - Navigate to whever you keep all of your repos
@@ -36,8 +39,6 @@
 
 # Optional Setup
 ## Create Backend API Template
-- Verify you can login to Cloudflare
-  - If not then you will need to create your account now at https://www.cloudflare.com/
 - Open a root terminal
 - Navigate to whever you keep all of your repos and into your project's directory
   - `cd repo-name-here`
